@@ -1,0 +1,26 @@
+[X] Criei o package.json
+[X] Criei o tsconfig.json
+[X] Criei o arquivo src/main.ts
+[X] Criei uma interface ou type para PokemonResumo
+[X] Criei uma interface simples para a resposta da PokeAPI
+[X] Criei função assíncrona para buscar Pokémon
+[ ] Usei fetch
+[ ] Usei async/await
+[ ] Usei try/catch
+[ ] Tratei erro de Pokémon inexistente
+[ ] Transformei o retorno da API em objeto simples
+[ ] Criei catálogo local em array ou classe
+[ ] Criei função ou método para adicionar Pokémon
+[ ] Impedi Pokémon duplicado
+[ ] Criei função ou método para listar catálogo
+[ ] Criei função ou método para remover Pokémon por ID
+[ ] Usei pelo menos 3 métodos de array
+[ ] Exibi mensagens claras no terminal
+[ ] Testei o fluxo no main.ts
+[ ] Atualizei o README.md
+[ ] Incluí exemplos de execução no README
+[ ] Fiz commits no GitHub
+[ ] Usei branches mínimas
+[ ] Enviei o link do GitHub no AVA
+[ ] Enviei o link do vídeo no AVA
+[ ] Não deixei vídeo como item obrigatório
