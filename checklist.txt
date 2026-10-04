@@ -8,17 +8,17 @@
 [X] Usei async/await
 [X] Usei try/catch
 [X] Tratei erro de Pokémon inexistente
-[ ] Transformei o retorno da API em objeto simples
+[X] Transformei o retorno da API em objeto simples
 [X] Criei catálogo local em array ou classe
 [X] Criei função ou método para adicionar Pokémon
 [X] Impedi Pokémon duplicado
 [X] Criei função ou método para listar catálogo
 [X] Criei função ou método para remover Pokémon por ID
-[ ] Usei pelo menos 3 métodos de array
+[X] Usei pelo menos 3 métodos de array
 [X] Exibi mensagens claras no terminal
-[ ] Testei o fluxo no main.ts
-[ ] Atualizei o README.md
-[ ] Incluí exemplos de execução no README
+[X] Testei o fluxo no main.ts
+[X] Atualizei o README.md
+[X] Incluí exemplos de execução no README
 [X] Fiz commits no GitHub
 [ ] Usei branches mínimas
 [ ] Enviei o link do GitHub no AVA

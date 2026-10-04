@@ -1,5 +1,3 @@
-// src/models/Pokemon.ts
-
 export interface PokemonResumo {
   id: number;
   nome: string;
@@ -14,5 +12,5 @@ export interface respostaPokeApi {
   height: number;
   weight: number;
   types: { type: { name: string } }[];
-  // ... demais campos da API
+
 }   

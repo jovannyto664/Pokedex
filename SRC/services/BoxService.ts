@@ -1,33 +1,33 @@
-import type { PokemonResumo, respostaPokeApi } from "../models/Pokemon.js";
-
-let catalogo: PokemonResumo[] = [];
-
-export function adicionarAoCatalogo(catalogo: PokemonResumo[], pokemon: PokemonResumo
-): PokemonResumo[] {
-    if (catalogo.some(a => a.id === pokemon.id)) {
-        console.log(`[AVISO] ${pokemon.nome} já está no catálogo.`);
-        return catalogo;
+import type { PokemonResumo } from "../models/Pokemon.js";
+export class CatalogoPokemon {
+    private pokemons: PokemonResumo[] = []
+    adicionar(pokemon: PokemonResumo): void {
+        const jaExiste = this.pokemons.some((item) => item.id === pokemon.id)
+        if (jaExiste) {
+            console.log(`[AVISO] ${pokemon.nome} já está no catálogo.`)
+            return;
+        }
+        this.pokemons.push(pokemon);
+        console.log(`[OK] ${pokemon.nome} adicionado ao catálogo.`)
     }
-    console.log(`[OK] ${pokemon.nome} adicionado ao catálogo.`);
-    return [...catalogo, pokemon];
-}
-
-export function listarCatalogo(catalogo: PokemonResumo[]): void {
-    console.log(catalogo)
-}
-
-function removerDoCatalogo(
-    catalogo: PokemonResumo[],
-    id: number
-): PokemonResumo[] {
-    const indice = catalogo.findIndex(a => a.id === id)
-    if (indice !== -1) {
-        catalogo.splice(indice, 1)
+    listar(): void {
+        if (this.pokemons.length === 0) {
+            console.log("[AVISO] Catálogo vazio.");
+            return;
+        }
+        this.pokemons.forEach((pokemon) => {
+            console.log(
+                `#${pokemon.id} - ${pokemon.nome} | Tipos: ${pokemon.tipos.join(", ")} | Altura: ${pokemon.altura} | Peso: ${pokemon.peso}`
+            )
+        })
+    }
+    remover(id: number): void {
+        const existe = this.pokemons.some((pokemon) => pokemon.id === id);
+        if (!existe) {
+            console.log("[AVISO] Nenhum Pokémon encontrado com esse ID.");
+            return;
+        }
+        this.pokemons = this.pokemons.filter((pokemon) => pokemon.id !== id);
         console.log("[OK] Pokémon removido do catálogo.");
-        return catalogo
-    } else {
-        console.log("[AVISO] Nenhum Pokémon encontrado com esse ID.");
-        return catalogo
     }
-}
-
+}   
