@@ -21,7 +21,7 @@ function removerDoCatalogo(
     id: number
 ): PokemonResumo[] {
     const indice = catalogo.findIndex(a => a.id === id)
-    if (indice) {
+    if (indice !== -1) {
         catalogo.splice(indice, 1)
         console.log("[OK] Pokémon removido do catálogo.");
         return catalogo
