@@ -47,19 +47,31 @@ Clone o repositório:
 
 ```bash
 git clone https://github.com/jovannyto664/Pokedex.git
+```
 
 Acesse a pasta do projeto:
 
-cd pokedex
+```bash
+cd Pokedex
+```
 
 Instale as dependências:
 
+```bash
 npm install
-Como executar
+```
+
+## Como executar
+
 Execute o projeto em ambiente de desenvolvimento:
 
+```bash
 npm run dev
-Estrutura do projeto
+```
+
+## Estrutura do projeto
+
+```text
 Pokedex/
 ├── SRC/
 │   ├── Main.ts
@@ -79,80 +91,131 @@ Pokedex/
 ├── package-lock.json
 ├── tsconfig.json
 └── README.md
+```
 
-Funcionalidades
+## Funcionalidades
 
 - Buscar Pokémon por nome ou ID
 - Tratar erro de Pokémon inexistente
 - Transformar resposta da API em objeto simplificado
 - Adicionar Pokémon ao catálogo local
-- Impedir Pokémon duplicado
-- Listar catálogo
+- Impedir duplicidade no catálogo
+- Listar Pokémon do catálogo
 - Remover Pokémon por ID
 - Exibir mensagens no terminal
-- Exemplos de execução
-- Busca válida
 
-Entrada testada:
+## Exemplos de execução
 
-pikachu
+A aplicação realiza as consultas automaticamente ao iniciar o programa, conforme o código em `SRC/Main.ts`.
+
+### Busca válida
 
 Saída obtida:
 
+```text
 [OK] Pokémon encontrado: pikachu
+[OK] pikachu adicionado ao catálogo.
+[OK] Pokémon encontrado: charmander
+[OK] charmander adicionado ao catálogo.
+```
 
-#25 - pikachu | Tipos: electric | Altura: 4 | Peso: 60
-Busca inválida
-Entrada testada:
-
-pokemon-inexistente
-
-Saída obtida:
-
-[ERRO] Pokémon não encontrado.
-Duplicidade
-
-Entrada testada:
-
-adicionar pikachu duas vezes
+### Busca inválida
 
 Saída obtida:
 
+```text
+[ERRO] Não foi possível buscar o Pokémon.
+```
+
+### Duplicidade
+
+Quando o mesmo Pokémon é adicionado novamente, a aplicação ignora a inclusão:
+
+```text
+[OK] Pokémon encontrado: pikachu
 [AVISO] pikachu já está no catálogo.
-Remoção
+```
 
-Entrada testada:
+### Remoção
 
-remover ID 25
+Ao remover um Pokémon pelo ID, o sistema atualiza o catálogo:
 
-Saída obtida:
+```text
+#25 - pikachu | Tipos: electric | Altura: 4 | Peso: 60
+#4 - charmander | Tipos: fire | Altura: 6 | Peso: 85
 [OK] Pokémon removido do catálogo.
+#4 - charmander | Tipos: fire | Altura: 6 | Peso: 85
+```
 
-Conceitos aplicados
+## Conceitos aplicados
 
-TypeScript
-Explique onde foram utilizados tipos, interfaces, parâmetros e retornos tipados.
+### TypeScript
 
-Interface PokemonResumo
-Explique o objetivo da interface criada para representar os dados simplificados do Pokémon.
+O projeto usa TypeScript para tipar parâmetros, retornos e estruturas de dados. A função `buscarPokemon(nomeOuId: string): Promise<PokemonResumo | null>` recebe uma string e retorna um objeto simplificado ou `null`, evitando valores indefinidos e deixando o código mais previsível. A classe `CatalogoPokemon` também define claramente os tipos de seus métodos e propriedades.
 
-Fetch e async/await
-Explique como a aplicação consulta a PokeAPI.
+### Interface `PokemonResumo`
 
-Tratamento de erros
-Explique como o projeto lida com Pokémon inexistente ou erro de busca.
+A interface `PokemonResumo` representa a versão resumida dos dados do Pokémon usados no catálogo local. Ela contém apenas as informações essenciais para a aplicação: `id`, `nome`, `tipos`, `altura` e `peso`.
 
-Métodos de array
-Informe onde foram usados map, filter, find, some, every, reduce ou forEach.
+```ts
+export interface PokemonResumo {
+  id: number;
+  nome: string;
+  tipos: string[];
+  altura: number;
+  peso: number;
+}
+```
 
-Classe CatalogoPokemon
-Explique quais atributos e métodos foram criados.
+Essa interface serve para padronizar a resposta da API e facilitar o armazenamento e a listagem dos Pokémon no catálogo.
 
-Organização do Kanban
+### Fetch e async/await
+
+A consulta à PokeAPI é feita com `fetch`, dentro de uma função assíncrona:
+
+```ts
+const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nomeOuId}`);
+```
+
+O `await` garante que a requisição termine antes de processar a resposta. Em seguida, a aplicação transforma os dados da API em um objeto mais simples e útil para o projeto.
+
+### Tratamento de erros
+
+O projeto trata erros em duas camadas:
+
+- quando a API responde com status diferente de sucesso (`!resposta.ok`)
+- quando a requisição falha por exceção (`catch`)
+
+Em ambos os casos, a aplicação exibe uma mensagem no terminal e retorna `null` para sinalizar que o Pokémon não pôde ser encontrado ou carregado.
+
+### Métodos de array
+
+Os métodos de array aparecem em pontos importantes do código:
+
+- `map`: usado em `data.types.map(t => t.type.name)` para transformar os tipos recebidos da API em uma lista de strings.
+- `some`: usado para verificar se um Pokémon já existe no catálogo antes de adicionar.
+- `filter`: usado para remover um Pokémon pelo ID.
+- `forEach`: usado para percorrer os Pokémon e exibir cada item no catálogo.
+
+### Classe `CatalogoPokemon`
+
+A classe `CatalogoPokemon` possui um atributo privado:
+
+```ts
+private pokemons: PokemonResumo[] = [];
+```
+
+Ela expõe três métodos principais:
+
+- `adicionar(pokemon: PokemonResumo)`: adiciona um Pokémon ao catálogo se ele ainda não existir.
+- `listar()`: exibe todos os Pokémon cadastrados no catálogo.
+- `remover(id: number)`: remove um Pokémon pelo ID e informa o usuário caso o ID não seja encontrado.
+
+## Git Projects
 
 Link do Kanban:
 
-COLE_AQUI_O_LINK
+https://github.com/users/jovannyto664/projects/2/views/1
 
 Branches utilizadas
 

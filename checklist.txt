@@ -20,7 +20,7 @@
 [X] Atualizei o README.md
 [X] Incluí exemplos de execução no README
 [X] Fiz commits no GitHub
-[ ] Usei branches mínimas
-[ ] Enviei o link do GitHub no AVA
-[ ] Enviei o link do vídeo no AVA
-[ ] Não deixei vídeo como item obrigatório
+[X] Usei branches mínimas
+[X] Enviei o link do GitHub no AVA
+[X] Enviei o link do vídeo no AVA
+[X] Não deixei vídeo como item obrigatório
