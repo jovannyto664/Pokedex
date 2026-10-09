@@ -1,0 +1,29 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "um pequeno projeto de consultas a PokeApi utilizando node.js",
+  "homepage": "https://github.com/jovannyto664/Pokedex#readme",
+  "bugs": {
+    "url": "https://github.com/jovannyto664/Pokedex/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jovannyto664/Pokedex.git"
+  },
+  "author": "jeovanny",
+  "type": "module",
+  "main": "SRC/Main.ts",
+  "scripts": {
+    "start": "tsx SRC/Main.ts",
+    "dev": "tsx SRC/Main.ts",
+    "build": "tsc",
+    "test": "echo \"Sem testes automatizados configurados\""
+  },
+  "dependencies": {
+    "npx": "^10.2.2",
+    "tsx": "^4.23.15"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
